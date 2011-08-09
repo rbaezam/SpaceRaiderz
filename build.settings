@@ -1,0 +1,15 @@
+settings =
+{
+  orientation = 
+  {
+    default = "portraitRight",
+    supported = 
+    {
+      "portraitLeft", "portraitRight",
+    },
+  },
+   androidPermissions =
+   {
+       "android.permission.INTERNET"
+   },
+}
