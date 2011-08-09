@@ -10,7 +10,7 @@ _W = display.contentWidth
 _H = display.contentHeight
 
 local player
-local playerMovementSpeed = 0.5
+local playerMovementSpeed = 2
 
 local background1
 local background2
@@ -20,6 +20,10 @@ local enemies={}
 local maxEnemies = 5
 local minEnemySpeed = 1
 local maxEnemySpeed = 50
+
+local goodTypes = {"good1", "good2", "good3"}
+local goods = {}
+local maxGoods = 3
 
 system.setAccelerometerInterval(50)
 if system.getInfo("environment") == "simulator" then
@@ -41,15 +45,36 @@ function initPlayer(group)
 	group:insert(player)
 end
 
+local createGood = function()
+	local good
+	local type = math.random(1, #goodTypes)
+	local x = math.random(0, _W-30)
+	
+	if type == 1 then
+		good = display.newCircle(x, 0, 10)
+		good.type = goodTypes[1]
+		good:setFillColor(100,0,0)
+	elseif type == 2 then
+		good = display.newCircle(x, 0, 20)
+		good.type = goodTypes[2]
+		good:setFillColor(0,100,0)
+	elseif type == 3 then
+		good = display.newCircle(x, 0, 30)
+		good.type = goodTypes[3]
+		good:setFillColor(0,0,100)
+	end
+	
+	physics.addBody(good, "static")
+	
+	return good
+end
+
 local createEnemy = function()
 
 	local availLeftPos = {0, _W-30}
 	local availDirection = {"right", "left"}
 
 	local y = math.random(0, _H/2)
-	local r = math.random(0, 255)
-	local g = math.random(0, 255)
-	local b = math.random(0, 255)
 	local enemy
 	
 	local type = math.random(1, #enemyTypes)
@@ -80,7 +105,6 @@ local createEnemy = function()
 		enemy.speed = 2
 	end
 	
-	enemy:setFillColor(r, g, b)
 	enemy.speed = math.random(minEnemySpeed, maxEnemySpeed) / 10
 
 	if math.random(1, 2) == 1 then
@@ -140,7 +164,7 @@ function new()
 			background2:translate(0, -_H*2)
 		end
 
-		-- Mostrar nuevos objetos
+		-- Mostrar nuevos enemigos
 		for i=1,maxEnemies do
 			if enemies[i] == nil then
 				local newEnemy = createEnemy()
@@ -161,6 +185,40 @@ function new()
 					enemies[i] = nil
 				end
 			end
+		end
+		
+		-- Mostrar nuevos objetos
+		for i=1,maxGoods do
+			if goods[i] == nil then
+				
+				local spawnRate = math.random(1,500)
+				local newGood
+				
+				if spawnRate > 0 and spawnRate <= 3 then
+					newGood = createGood("good1")
+				elseif spawnRate >= 4 and spawnRate <= 6 then
+					newGood = createGood("good2")
+				elseif spawnRate >= 7 and spawnRate <= 9 then
+					newGood = createGood("good3")
+				else
+					newGood = nil
+				end
+				
+				if newGood ~= nil then
+					localGroup:insert(newGood)
+					goods[i] = newGood
+				end
+			else
+				goods[i].y = goods[i].y + playerMovementSpeed
+			end
+
+			if goods[i] ~= nil then
+				if goods[i].y > _H then
+					goods[i]:removeSelf()
+					goods[i] = nil
+				end
+			end
+
 		end
 
 		-- Eliminar objetos desaparecidos
