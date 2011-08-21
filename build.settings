@@ -3,7 +3,6 @@ settings =
         orientation =
         {
                 default = "portrait",
-        supported = { "portraitUpsideDown" },
         },
  
         iphone =
@@ -18,5 +17,9 @@ settings =
                "Icon@2x.png",
             },
                 },
+        },
+        androidPermissions =
+        {
+            "android.permission.VIBRATE"
         }
 }

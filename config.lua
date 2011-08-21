@@ -6,7 +6,7 @@ application =
 		width = 320,
 		height = 480,
 		fps = 60,
-		scale = "letterbox",
+		scale = "zoomStretch",
 		imageSuffix = 
 		{
 			["@2"] = 2,

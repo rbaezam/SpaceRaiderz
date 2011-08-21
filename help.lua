@@ -1,30 +1,30 @@
 module(..., package.seeall)
 
+local _W = display.contentWidth
+local _H = display.contentHeight
+
 -- Main function - MUST return a display.newGroup()
 function new()
 	local localGroup = display.newGroup()
 	
 	-- Background
-	local background = display.newImageRect("images/bk-default.png", 480, 320)
+	local background = display.newImageRect("images/background.png", _W, _H)
 	background.x = display.contentCenterX
 	background.y = display.contentCenterY
 	localGroup:insert(background)
-	
-	-- Title
-	local title = display.newText("Touch to go back", 0, 0, native.systemFontBold, 16)
-	title:setTextColor( 255,255,255)
-	title.x = display.contentCenterX
-	title.y = display.contentCenterY
-	title.name = "title"
-	localGroup:insert(title)
+
+	local returnMenu = display.newImage("images/return_menu.png")
+	returnMenu.x = display.contentCenterX
+	returnMenu.y = _H - returnMenu.height/2
+	localGroup:insert(returnMenu)
 	
 	-- Touch to go back
-	local function touched ( event )
+	local function onReturnMenu ( event )
 		if ("ended" == event.phase) then
 			director:changeScene("menu","fade")
 		end
 	end
-	background:addEventListener("touch",touched)
+	returnMenu:addEventListener("touch", onReturnMenu)
 	
 	unloadMe = function()
 	end	
