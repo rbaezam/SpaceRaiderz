@@ -750,6 +750,8 @@ end
 
 function startGame()
 
+	ads.hide()
+
 	initVars()
 
 	localGroup = display.newGroup()
@@ -853,8 +855,6 @@ function new()
 	end	
 	--]]
 	startGame()
-
-	ads.hide()
 
 	-- Código para imprimir las letras del sistema
 	--local sysFonts = native.getFontNames()
