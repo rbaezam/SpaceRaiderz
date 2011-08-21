@@ -5,7 +5,7 @@ local _W = display.contentWidth
 local _H = display.contentHeight
 
 local titleFontName = "Harrowprint"
-local scoreFontName = "PRISTINA"
+local scoreFontName = native.systemFont
 
 -- Main function - MUST return a display.newGroup()
 function new()
@@ -28,7 +28,7 @@ function new()
 	for index,score in ipairs(highScores) do
 
 		local scoreText = score.pos .. " - " .. score.name .. ": " .. score.score
-		local scoreDisplay = display.newText(scoreText, 0, 0, scoreFontName, 20)
+		local scoreDisplay = display.newText(scoreText, 0, 0, scoreFontName, 16)
 		scoreDisplay:setReferencePoint(display.CenterLeftReferencePoint)
 		scoreDisplay.x = 40
 		scoreDisplay.y = yPos
