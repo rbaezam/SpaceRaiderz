@@ -12,10 +12,14 @@ settings =
                         UIPrerenderedIcon = true,
                         UIApplicationExitsOnSuspend = false,
                         CFBundleIconFile = "Icon.png",
-            CFBundleIconFiles = {
-               "Icon.png", 
-               "Icon@2x.png",
-            },
+            			CFBundleIconFiles = {
+               				"Icon.png", 
+               				"Icon@2x.png",
+            			},
+						UIAppFonts = {
+							"Harrowprint.ttf",
+							"PRISTINA.ttf"
+						}
                 },
         },
         androidPermissions =

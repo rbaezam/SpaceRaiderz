@@ -5,7 +5,7 @@ local _W = display.contentWidth
 local _H = display.contentHeight
 
 local titleFontName = "Harrowprint"
-local scoreFontName = "Pristina"
+local scoreFontName = "PRISTINA"
 
 -- Main function - MUST return a display.newGroup()
 function new()
@@ -32,14 +32,14 @@ function new()
 		scoreDisplay:setReferencePoint(display.CenterLeftReferencePoint)
 		scoreDisplay.x = 40
 		scoreDisplay.y = yPos
-		yPos = yPos + scoreDisplay.height
+		yPos = yPos + scoreDisplay.height/1.5
 		localGroup:insert(scoreDisplay)
 
 	end
 
 	local returnMenu = display.newImage("images/return_menu.png")
 	returnMenu.x = display.contentCenterX
-	returnMenu.y = _H - returnMenu.height/2
+	returnMenu.y = _H - returnMenu.height/2 - 48
 	localGroup:insert(returnMenu)
 	
 	local function onReturnMenu ( event )

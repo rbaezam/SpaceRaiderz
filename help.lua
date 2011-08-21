@@ -15,7 +15,7 @@ function new()
 
 	local returnMenu = display.newImage("images/return_menu.png")
 	returnMenu.x = display.contentCenterX
-	returnMenu.y = _H - returnMenu.height/2
+	returnMenu.y = _H - returnMenu.height/2 - 48
 	localGroup:insert(returnMenu)
 	
 	-- Touch to go back

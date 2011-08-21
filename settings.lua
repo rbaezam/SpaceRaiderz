@@ -28,7 +28,7 @@ function new()
 	title.y = title.height
 	title.name = "title"
 	localGroup:insert(title)
-
+--[[
 	local musicOption = display.newImage("music_on.png")
 	musicOption.x = display.contentCenterX
 	musicOption.y = musicOptionPosY
@@ -48,11 +48,11 @@ function new()
 	resetScores.x = display.contentCenterX
 	resetScores.y = resetScoresPosY
 	localGroup:insert(resetScores)
-
+]]
 	-- Return to menu
 	local returnMenu = display.newImage("images/return_menu.png")
 	returnMenu.x = display.contentCenterX
-	returnMenu.y = _H - returnMenu.height/2
+	returnMenu.y = _H - returnMenu.height/2 - 48
 	localGroup:insert(returnMenu)
 	
 	local function onReturnMenu ( event )
